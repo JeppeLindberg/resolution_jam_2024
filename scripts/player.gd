@@ -6,44 +6,60 @@ extends Node2D
 @onready var main = get_node('/root/main')
 
 var _target_belt = null;
-var _point_path = []
+var _position_path = []
 var _latest_position = Vector2.ZERO
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed('speed_up'):
+		main.delta_mult = 5.0
+	else:
+		main.delta_mult = 1.0
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
-		if (event.button_index == MOUSE_BUTTON_LEFT) and (event.pressed) and (_point_path == []):
-			_target_belt = main.create_node(belt_prefab, belts)
+		if (event.button_index == MOUSE_BUTTON_LEFT) and (event.pressed) and (_position_path == []):
 			_add_points_at(event.position)
-			_update()
+			if _position_path != []:
+				_target_belt = main.create_node(belt_prefab, belts)
+				_update()
 
 		if (event.button_index == MOUSE_BUTTON_LEFT) and (not event.pressed):
 			_latest_position = Vector2.ZERO
 			_update()
 			_approve()
-			_point_path = []
+			_position_path = []
 			_target_belt = null;
+
+			var ui = main.get_nodes_at(event.position, ['ui']);
+			if len(ui) > 0:
+				ui[0].clicked()
+
+		if (event.button_index == MOUSE_BUTTON_RIGHT) and (not event.pressed):
+			var belts_clicked = main.get_nodes_at(event.position, ['belt']);
+			if len(belts_clicked) > 0:
+				belts_clicked[0].queue_free()
 	
 	if event is InputEventMouseMotion:
 		_latest_position = event.position
 
-		if _point_path != []:
+		if _position_path != []:
 			_add_points_at(event.position)
 			_update()
 
 func _add_points_at(pos):
-	var nodes = main.get_nodes_at(pos);
+	var nodes = main.get_nodes_at(pos, ['emitter', 'reciever']);
 	for node in nodes:
-		if _point_path.find(node) == -1:
-			_point_path.append(node)
+		if node.visible and _position_path.find(node) == -1:
+			_position_path.append(node.global_position)
 
 func _update():
 	if _target_belt == null:
 		return
 	
 	var positions = []
-	for point in _point_path:
-		positions.append(point.global_position)
+	for pos in _position_path:
+		positions.append(pos)
 	if _latest_position != Vector2.ZERO:
 		positions.append(_latest_position)
 
@@ -53,7 +69,7 @@ func _approve():
 	if _target_belt == null:
 		return
 
-	if len(_point_path) < 2:
+	if len(_position_path) < 2:
 		_target_belt.queue_free()
 		return
 

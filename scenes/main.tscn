@@ -1,11 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmemqpdkflenm"]
+[gd_scene load_steps=19 format=3 uid="uid://dmemqpdkflenm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="2_cocho"]
 [ext_resource type="PackedScene" uid="uid://4kcu4ra0ydm4" path="res://prefabs/spawner.tscn" id="2_mfv1d"]
 [ext_resource type="PackedScene" uid="uid://cclt70c5gxaje" path="res://prefabs/belt.tscn" id="3_2i38k"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="3_8jwt4"]
+[ext_resource type="Shader" uid="uid://cvg6e2l3xsed3" path="res://materials/timer_shader.tres" id="3_67hgn"]
+[ext_resource type="Texture2D" uid="uid://dvcr32enmkmbs" path="res://sprites/timer_ui.png" id="3_f7yio"]
+[ext_resource type="Script" path="res://scripts/timer.gd" id="3_pncvk"]
 [ext_resource type="PackedScene" uid="uid://dbvsox2aucdnv" path="res://prefabs/consumer.tscn" id="4_eed4j"]
+[ext_resource type="Texture2D" uid="uid://c3hqivygpah5k" path="res://sprites/white_square.png" id="5_csge8"]
 [ext_resource type="PackedScene" uid="uid://d2yym3g76a5de" path="res://prefabs/shapes/circle.tscn" id="5_q5a4o"]
+[ext_resource type="Texture2D" uid="uid://obvagqqy76w4" path="res://sprites/continue_background.png" id="8_mcm47"]
+[ext_resource type="Script" path="res://scripts/continue_button.gd" id="8_v3m11"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n0rk2"]
+viewport_path = NodePath("timer_container/timer_viewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72c1n"]
+resource_local_to_scene = true
+shader = ExtResource("3_67hgn")
+shader_parameter/color = Color(0.635294, 0.862745, 0.780392, 1)
+shader_parameter/alpha_texture = SubResource("ViewportTexture_n0rk2")
+shader_parameter/color_texture = ExtResource("3_f7yio")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5nj1"]
+size = Vector2(302, 80)
 
 [sub_resource type="Environment" id="Environment_ef7gb"]
 
@@ -13,13 +34,118 @@
 script = ExtResource("1_qlr3v")
 world = NodePath("world")
 
-[node name="environment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ef7gb")
+[node name="timer_container" type="SubViewportContainer" parent="."]
+light_mask = 2
+visibility_layer = 2
+
+[node name="timer_viewport" type="SubViewport" parent="timer_container"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4294966274
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="camera" type="Camera2D" parent="timer_container/timer_viewport"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(640, 360)
+script = ExtResource("3_8jwt4")
+render_layers = 2
+
+[node name="timer" type="Node2D" parent="timer_container/timer_viewport"]
+visible = false
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("3_pncvk")
+
+[node name="progress_1" type="Node2D" parent="timer_container/timer_viewport/timer"]
+visible = false
+light_mask = 2
+visibility_layer = 2
+position = Vector2(640, 360)
+
+[node name="sprite" type="Sprite2D" parent="timer_container/timer_viewport/timer/progress_1"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1000, 0)
+scale = Vector2(20, 20)
+texture = ExtResource("5_csge8")
+
+[node name="pivot" type="Node2D" parent="timer_container/timer_viewport/timer/progress_1"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="sprite" type="Sprite2D" parent="timer_container/timer_viewport/timer/progress_1/pivot"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(1000, 0)
+scale = Vector2(20, 20)
+texture = ExtResource("5_csge8")
+
+[node name="progress_2" type="Node2D" parent="timer_container/timer_viewport/timer"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(640, 360)
+
+[node name="pivot" type="Node2D" parent="timer_container/timer_viewport/timer/progress_2"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="sprite" type="Sprite2D" parent="timer_container/timer_viewport/timer/progress_2/pivot"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1000, 0)
+scale = Vector2(20, 20)
+texture = ExtResource("5_csge8")
+
+[node name="sprite" type="Sprite2D" parent="timer_container/timer_viewport/timer/progress_2"]
+self_modulate = Color(0, 0, 0, 1)
+light_mask = 2
+visibility_layer = 2
+position = Vector2(1000, 0)
+scale = Vector2(20, 20)
+texture = ExtResource("5_csge8")
 
 [node name="world" type="Node2D" parent="."]
 
 [node name="camera" type="Camera2D" parent="world"]
 position = Vector2(640, 360)
+script = ExtResource("3_8jwt4")
+render_layers = 1
+
+[node name="ui" type="Node2D" parent="world/camera"]
+
+[node name="timer" type="Sprite2D" parent="world/camera/ui"]
+material = SubResource("ShaderMaterial_72c1n")
+texture = ExtResource("3_f7yio")
+
+[node name="continue_button" type="StaticBody2D" parent="world/camera/ui"]
+position = Vector2(0, -256)
+script = ExtResource("8_v3m11")
+
+[node name="sprite" type="Sprite2D" parent="world/camera/ui/continue_button"]
+texture = ExtResource("8_mcm47")
+
+[node name="Label" type="Label" parent="world/camera/ui/continue_button"]
+self_modulate = Color(0.635294, 0.862745, 0.780392, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -7.0
+offset_right = 64.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="collider" type="CollisionShape2D" parent="world/camera/ui/continue_button"]
+shape = SubResource("RectangleShape2D_b5nj1")
 
 [node name="player" type="Node2D" parent="world"]
 script = ExtResource("1_5ycuw")
@@ -28,10 +154,27 @@ belt_prefab = ExtResource("3_2i38k")
 [node name="points" type="Node2D" parent="world"]
 
 [node name="spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
-position = Vector2(435, 299)
+position = Vector2(385, 268)
 
 [node name="consumer" parent="world/points" instance=ExtResource("4_eed4j")]
-position = Vector2(890, 315)
+position = Vector2(930, 446)
 consume_shape = ExtResource("5_q5a4o")
+inactive_from = 2
+
+[node name="consumer2" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(512, 565)
+consume_shape = ExtResource("5_q5a4o")
+active_from = 1
+max_inventory_dict = {
+1: 5.0
+}
 
 [node name="belts" type="Node2D" parent="world"]
+
+[node name="environment" type="WorldEnvironment" parent="world"]
+environment = SubResource("Environment_ef7gb")
+
+[node name="game" type="Node2D" parent="." node_paths=PackedStringArray("timer", "continue_button")]
+script = ExtResource("2_cocho")
+timer = NodePath("../timer_container/timer_viewport/timer")
+continue_button = NodePath("../world/camera/ui/continue_button")

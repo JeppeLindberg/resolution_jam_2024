@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cclt70c5gxaje"]
+[gd_scene load_steps=8 format=3 uid="uid://cclt70c5gxaje"]
 
 [ext_resource type="Script" path="res://scripts/belt_line.gd" id="1_rjrkr"]
 [ext_resource type="Script" path="res://scripts/belt.gd" id="1_tebgu"]
 [ext_resource type="PackedScene" uid="uid://bnrv806b300d5" path="res://prefabs/relay.tscn" id="2_6xwh1"]
 [ext_resource type="Script" path="res://scripts/belt_path.gd" id="4_7xpd8"]
 [ext_resource type="PackedScene" uid="uid://c8w7j7317xmeb" path="res://prefabs/vehicle.tscn" id="5_pxsal"]
+[ext_resource type="PackedScene" uid="uid://b554tckyxm8dh" path="res://prefabs/belt_collider.tscn" id="6_5oo55"]
 
 [sub_resource type="Curve2D" id="Curve2D_wkkhc"]
 bake_interval = 1.0
 
-[node name="belt" type="Node2D"]
+[node name="belt" type="StaticBody2D"]
 script = ExtResource("1_tebgu")
 relay_prefab = ExtResource("2_6xwh1")
 
@@ -21,3 +22,4 @@ script = ExtResource("1_rjrkr")
 curve = SubResource("Curve2D_wkkhc")
 script = ExtResource("4_7xpd8")
 vehicle_prefab = ExtResource("5_pxsal")
+collider_prefab = ExtResource("6_5oo55")

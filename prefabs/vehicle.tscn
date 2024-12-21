@@ -1,7 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8w7j7317xmeb"]
+[gd_scene load_steps=3 format=3 uid="uid://c8w7j7317xmeb"]
 
 [ext_resource type="Script" path="res://scripts/vehicle.gd" id="1_5itdj"]
+[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="2_p57mp"]
 
 [node name="vehicle" type="PathFollow2D"]
 rotates = false
 script = ExtResource("1_5itdj")
+
+[node name="border" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_p57mp")
+
+[node name="inner" type="Sprite2D" parent="."]
+self_modulate = Color(0.94902, 0.941176, 0.898039, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_p57mp")
+
+[node name="shape_holder" type="Node2D" parent="."]
+scale = Vector2(0.8, 0.8)

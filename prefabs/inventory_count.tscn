@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://781ty7w23kak"]
+
+[node name="inventory_count" type="Node2D"]
+position = Vector2(0, -41)
+
+[node name="shape_holder" type="Node2D" parent="."]
+position = Vector2(-33, 0)
+
+[node name="count" type="Label" parent="."]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -15.0
+offset_right = 96.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ASD	"
+vertical_alignment = 1

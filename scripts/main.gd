@@ -4,6 +4,8 @@ extends Node
 
 var _result
 
+var delta_mult = 1.0
+
 
 # Get all children of the node that belongs to all of the given groups
 func get_children_in_groups(node, groups, recursive = false):
@@ -40,7 +42,7 @@ func create_node(prefab, parent):
 	parent.add_child(new_node)
 	return new_node
 
-func get_nodes_at(pos, group = '', collision_mask = 0):
+func get_nodes_at(pos, groups = [], collision_mask = 0):
 	var point:PhysicsPointQueryParameters2D = PhysicsPointQueryParameters2D.new()
 	point.position = pos;
 	point.collide_with_areas = true
@@ -53,6 +55,11 @@ func get_nodes_at(pos, group = '', collision_mask = 0):
 	var nodes = []
 	for collision in collisions:
 		var node = collision['collider'];
-		if (group == '') or node.is_in_group(group):
+		if groups == []:
 			nodes.append(node)
+		else:
+			for group in groups:
+				if node.is_in_group(group):
+					nodes.append(node)
+					break
 	return nodes

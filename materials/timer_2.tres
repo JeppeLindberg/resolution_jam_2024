@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bk41qoltg7xk7"]
+
+[ext_resource type="Shader" uid="uid://cvg6e2l3xsed3" path="res://materials/timer_shader.tres" id="1_gqv6i"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_gqv6i")

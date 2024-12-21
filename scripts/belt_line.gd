@@ -45,7 +45,9 @@ func _recreate():
 		var point_2 = rectangle_points[0]
 		var point_3 = rectangle_points[3]
 
-		new_points.append_array([point_1, point_2, point_3, point_4])
+		for point in [point_1, point_2, point_3, point_4]:
+			if new_points.find(point) == -1:
+				new_points.append(point)
 
 	points = PackedVector2Array(new_points)
 

@@ -6,6 +6,9 @@ extends Node2D
 @export var relay_prefab: PackedScene
 
 
+func _ready():
+	add_to_group('belt')
+
 func update(points):
 	if main == null:
 		main = get_node('/root/main')
@@ -21,4 +24,12 @@ func update(points):
 
 func approve():
 	line.approve()
+
+func check_cull():
+	var recievers = main.get_nodes_at(line.points[len(line.points)-1], ['reciever'])
+	for reciever in recievers:
+		if reciever.visible:
+			return
+
+	queue_free()
 
