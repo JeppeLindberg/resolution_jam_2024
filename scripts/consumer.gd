@@ -21,7 +21,7 @@ var current_inventory = 0.0
 func _ready() -> void:
 	add_to_group('point')
 	add_to_group('consumer')
-	add_to_group('reciever')
+	add_to_group('receiver')
 	main.create_node(consume_shape, shape_holder)
 	_update_text()
 	deactivate()

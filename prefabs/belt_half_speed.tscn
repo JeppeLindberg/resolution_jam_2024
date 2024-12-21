@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdyla24q6g16f"]
+
+[ext_resource type="Script" path="res://scripts/belt.gd" id="1_di0lj"]
+[ext_resource type="PackedScene" uid="uid://bnrv806b300d5" path="res://prefabs/relay.tscn" id="2_tpl2q"]
+[ext_resource type="Script" path="res://scripts/belt_line.gd" id="3_sxalm"]
+[ext_resource type="Script" path="res://scripts/belt_path.gd" id="4_uouwd"]
+[ext_resource type="PackedScene" uid="uid://b554tckyxm8dh" path="res://prefabs/belt_collider.tscn" id="5_lp0pi"]
+
+[sub_resource type="Curve2D" id="Curve2D_wkkhc"]
+bake_interval = 1.0
+
+[node name="belt_half_speed" type="StaticBody2D"]
+script = ExtResource("1_di0lj")
+relay_prefab = ExtResource("2_tpl2q")
+allow_delete = false
+
+[node name="line" type="Line2D" parent="."]
+default_color = Color(0.270588, 0.266667, 0.309804, 1)
+script = ExtResource("3_sxalm")
+
+[node name="path" type="Path2D" parent="line"]
+curve = SubResource("Curve2D_wkkhc")
+script = ExtResource("4_uouwd")
+collider_prefab = ExtResource("5_lp0pi")
+speed_mult = 0.5

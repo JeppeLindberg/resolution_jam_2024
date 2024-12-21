@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmemqpdkflenm"]
+[gd_scene load_steps=22 format=3 uid="uid://dmemqpdkflenm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="2_cocho"]
+[ext_resource type="PackedScene" uid="uid://c8w7j7317xmeb" path="res://prefabs/vehicle.tscn" id="2_dhtts"]
 [ext_resource type="PackedScene" uid="uid://4kcu4ra0ydm4" path="res://prefabs/spawner.tscn" id="2_mfv1d"]
 [ext_resource type="PackedScene" uid="uid://cclt70c5gxaje" path="res://prefabs/belt.tscn" id="3_2i38k"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="3_8jwt4"]
@@ -14,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://d2yym3g76a5de" path="res://prefabs/shapes/circle.tscn" id="5_q5a4o"]
 [ext_resource type="Texture2D" uid="uid://obvagqqy76w4" path="res://sprites/continue_background.png" id="8_mcm47"]
 [ext_resource type="Script" path="res://scripts/continue_button.gd" id="8_v3m11"]
+[ext_resource type="PackedScene" uid="uid://bbdsxsl50005r" path="res://prefabs/shapes/circle_blue.tscn" id="15_75q2q"]
+[ext_resource type="PackedScene" uid="uid://6b1oxmrvvr0w" path="res://prefabs/painter.tscn" id="16_5x7d6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n0rk2"]
 viewport_path = NodePath("timer_container/timer_viewport")
@@ -33,6 +36,7 @@ size = Vector2(302, 80)
 [node name="main" type="Node" node_paths=PackedStringArray("world")]
 script = ExtResource("1_qlr3v")
 world = NodePath("world")
+vehicle_prefab = ExtResource("2_dhtts")
 
 [node name="timer_container" type="SubViewportContainer" parent="."]
 light_mask = 2
@@ -151,6 +155,8 @@ shape = SubResource("RectangleShape2D_b5nj1")
 script = ExtResource("1_5ycuw")
 belt_prefab = ExtResource("3_2i38k")
 
+[node name="belts" type="Node2D" parent="world"]
+
 [node name="points" type="Node2D" parent="world"]
 
 [node name="spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
@@ -169,12 +175,23 @@ max_inventory_dict = {
 1: 5.0
 }
 
-[node name="belts" type="Node2D" parent="world"]
+[node name="consumer3" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(768, 565)
+consume_shape = ExtResource("15_75q2q")
+active_from = 2
+max_inventory_dict = {
+1: 5.0
+}
+
+[node name="painter" parent="world/points" instance=ExtResource("16_5x7d6")]
+position = Vector2(861, 226)
+new_color = Color(0.294118, 0.501961, 0.792157, 1)
 
 [node name="environment" type="WorldEnvironment" parent="world"]
 environment = SubResource("Environment_ef7gb")
 
 [node name="game" type="Node2D" parent="." node_paths=PackedStringArray("timer", "continue_button")]
 script = ExtResource("2_cocho")
+current_stage = 1
 timer = NodePath("../timer_container/timer_viewport/timer")
 continue_button = NodePath("../world/camera/ui/continue_button")

@@ -50,5 +50,3 @@ func next_stage():
 	time = max_time
 	timer_running = true
 	ready_for_continue = false
-
-

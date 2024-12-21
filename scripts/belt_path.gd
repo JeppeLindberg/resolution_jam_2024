@@ -2,8 +2,8 @@ extends Path2D
 
 @onready var main = get_node('/root/main')
 
-@export var vehicle_prefab: PackedScene
 @export var collider_prefab: PackedScene
+@export var speed_mult = 1.0
 
 
 func _ready() -> void:
@@ -23,9 +23,16 @@ func has_space_at(pos):
 	return(true)
 
 func add_new_shape(shape_prefab):
-	var new_vehicle = main.create_node(vehicle_prefab, self)
+	var new_vehicle = main.create_node(main.vehicle_prefab, self)
 	new_vehicle.global_position = curve.get_point_position(0)
-	main.create_node(shape_prefab, new_vehicle)
+	new_vehicle.set_new_shape(shape_prefab)
+	return(new_vehicle)
+
+func add_shape(shape):
+	var new_vehicle = main.create_node(main.vehicle_prefab, self)
+	new_vehicle.global_position = curve.get_point_position(0)
+	new_vehicle.set_shape(shape)
+	return(new_vehicle)
 
 func approve():
 	var new_curve = Curve2D.new()

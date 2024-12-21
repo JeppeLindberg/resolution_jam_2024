@@ -4,6 +4,7 @@ extends Node2D
 @onready var line = get_node('line');
 
 @export var relay_prefab: PackedScene
+@export var allow_delete = true
 
 
 func _ready():
@@ -26,9 +27,9 @@ func approve():
 	line.approve()
 
 func check_cull():
-	var recievers = main.get_nodes_at(line.points[len(line.points)-1], ['reciever'])
-	for reciever in recievers:
-		if reciever.visible:
+	var receivers = main.get_nodes_at(line.points[len(line.points)-1], ['receiver'])
+	for receiver in receivers:
+		if receiver.visible:
 			return
 
 	queue_free()

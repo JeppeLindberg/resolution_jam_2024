@@ -18,7 +18,6 @@ var current_inventory = 0.0
 
 func _ready() -> void:
 	add_to_group('point')
-	add_to_group('spawner')
 	add_to_group('emitter')
 	main.create_node(spawn_shape, shape_holder)
 	_update_text()

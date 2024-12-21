@@ -2,6 +2,8 @@ extends Node
 
 @export var world: Node2D
 
+@export var vehicle_prefab: PackedScene
+
 var _result
 
 var delta_mult = 1.0
@@ -16,6 +18,9 @@ func get_children_in_groups(node, groups, recursive = false):
 		return _result
 
 	for child in node.get_children():
+		if groups == []:
+			_result.append(child)
+			continue
 		for group in groups:				
 			if child.is_in_group(group):
 				_result.append(child)
@@ -27,10 +32,11 @@ func get_children_in_groups(node, groups, recursive = false):
 func _get_children_in_groups_recursive(node, groups):
 	for child in node.get_children():
 		var add_to_result = true;
-		for group in groups:
-			if not child.is_in_group(group):
-				add_to_result = false;
-				break
+		if groups != []:
+			for group in groups:
+				if not child.is_in_group(group):
+					add_to_result = false;
+					break
 				
 		if add_to_result:
 			_result.append(child)
