@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnrv806b300d5"]
+
+[ext_resource type="Script" path="res://scripts/relay.gd" id="1_06p8f"]
+
+[node name="relay_1" type="Node2D"]
+position = Vector2(553, 465)
+script = ExtResource("1_06p8f")

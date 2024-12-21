@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b8gdbcu2pl8m0"]
+
+[ext_resource type="FontFile" uid="uid://5ndla1uscuex" path="res://fonts/cc.yal.7w7.block.ttf" id="1_vrt7d"]
+
+[resource]
+default_font = ExtResource("1_vrt7d")
+default_font_size = 32

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8w7j7317xmeb"]
+
+[ext_resource type="Script" path="res://scripts/vehicle.gd" id="1_5itdj"]
+
+[node name="vehicle" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_5itdj")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmemqpdkflenm"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
+[ext_resource type="PackedScene" uid="uid://4kcu4ra0ydm4" path="res://prefabs/spawner.tscn" id="2_mfv1d"]
+[ext_resource type="PackedScene" uid="uid://cclt70c5gxaje" path="res://prefabs/belt.tscn" id="3_2i38k"]
+[ext_resource type="PackedScene" uid="uid://dbvsox2aucdnv" path="res://prefabs/consumer.tscn" id="4_eed4j"]
+[ext_resource type="PackedScene" uid="uid://d2yym3g76a5de" path="res://prefabs/shapes/circle.tscn" id="5_q5a4o"]
+
+[sub_resource type="Environment" id="Environment_ef7gb"]
+
+[node name="main" type="Node" node_paths=PackedStringArray("world")]
+script = ExtResource("1_qlr3v")
+world = NodePath("world")
+
+[node name="environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ef7gb")
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="camera" type="Camera2D" parent="world"]
+position = Vector2(640, 360)
+
+[node name="player" type="Node2D" parent="world"]
+script = ExtResource("1_5ycuw")
+belt_prefab = ExtResource("3_2i38k")
+
+[node name="points" type="Node2D" parent="world"]
+
+[node name="spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
+position = Vector2(435, 299)
+
+[node name="consumer" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(890, 315)
+consume_shape = ExtResource("5_q5a4o")
+
+[node name="belts" type="Node2D" parent="world"]

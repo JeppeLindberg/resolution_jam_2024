@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2yym3g76a5de"]
+
+[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="1_cy8u6"]
+
+[node name="circle" type="Node2D"]
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_cy8u6")

@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://cclt70c5gxaje"]
+
+[ext_resource type="Script" path="res://scripts/belt_line.gd" id="1_rjrkr"]
+[ext_resource type="Script" path="res://scripts/belt.gd" id="1_tebgu"]
+[ext_resource type="PackedScene" uid="uid://bnrv806b300d5" path="res://prefabs/relay.tscn" id="2_6xwh1"]
+[ext_resource type="Script" path="res://scripts/belt_path.gd" id="4_7xpd8"]
+[ext_resource type="PackedScene" uid="uid://c8w7j7317xmeb" path="res://prefabs/vehicle.tscn" id="5_pxsal"]
+
+[sub_resource type="Curve2D" id="Curve2D_wkkhc"]
+bake_interval = 1.0
+
+[node name="belt" type="Node2D"]
+script = ExtResource("1_tebgu")
+relay_prefab = ExtResource("2_6xwh1")
+
+[node name="line" type="Line2D" parent="."]
+default_color = Color(0.270588, 0.266667, 0.309804, 1)
+script = ExtResource("1_rjrkr")
+
+[node name="path" type="Path2D" parent="line"]
+curve = SubResource("Curve2D_wkkhc")
+script = ExtResource("4_7xpd8")
+vehicle_prefab = ExtResource("5_pxsal")
