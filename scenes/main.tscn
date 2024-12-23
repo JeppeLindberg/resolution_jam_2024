@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bbdsxsl50005r" path="res://prefabs/shapes/circle_blue.tscn" id="15_75q2q"]
 [ext_resource type="PackedScene" uid="uid://6b1oxmrvvr0w" path="res://prefabs/painter.tscn" id="16_5x7d6"]
 [ext_resource type="PackedScene" uid="uid://j5xgll1v0gbs" path="res://prefabs/combiner.tscn" id="17_62dwh"]
-[ext_resource type="PackedScene" uid="uid://dwocphwjmn3ij" path="res://prefabs/shapes/stage_3_quad.tscn" id="17_66hkl"]
+[ext_resource type="PackedScene" path="res://prefabs/shapes/stage_3_quad_2.tscn" id="17_t4kjw"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n0rk2"]
 viewport_path = NodePath("timer_container/timer_viewport")
@@ -198,7 +198,7 @@ new_color = Color(0.294118, 0.501961, 0.792157, 1)
 
 [node name="stage_3_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
 position = Vector2(975, 512)
-consume_shape = ExtResource("17_66hkl")
+consume_shape = ExtResource("17_t4kjw")
 active_from = 3
 max_inventory_dict = {}
 
