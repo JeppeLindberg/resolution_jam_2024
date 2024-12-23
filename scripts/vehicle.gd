@@ -25,23 +25,23 @@ func set_shape(shape):
 
 func commit_progress(delta: float, max_progress: float) -> void:
 	_init_shape()
-
-	var prev_progress = progress
+	
 	var path = get_parent()
 	progress += delta * main.delta_mult * path.speed_mult * 100.0
 	if progress > max_progress:
 		progress = max_progress
 	if progress_ratio == 1.0:
 		for receiver in main.get_nodes_at(global_position, ['receiver']):
-			if receiver.can_recieve_shape(_shape):
-				receiver.recieve_shape(_shape)
+			if receiver.can_receive_shape(_shape):
+				receiver.receive_shape(_shape)
 				queue_free()
 				return
 
 		for emitter in main.get_nodes_at(global_position, ['emitter']):
-			emitter.emit_shape(_shape)
-			queue_free()
-			return
+			if emitter.can_emit_shape(_shape):
+				emitter.emit_shape(_shape)
+				queue_free()
+				return
 
 func _init_shape():
 	if _shape == null:

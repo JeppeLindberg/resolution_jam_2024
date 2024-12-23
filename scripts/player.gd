@@ -8,8 +8,8 @@ extends Node2D
 var _target_belt = null;
 var _position_path = []
 var _latest_position = Vector2.ZERO
-var _visited_emitter = false
-var _visited_reciever = false
+var _visited_emitter = null
+var _visited_reciever = null
 
 
 func _process(_delta: float) -> void:
@@ -32,8 +32,8 @@ func _unhandled_input(event):
 			_approve()
 			_position_path = []
 			_target_belt = null;
-			_visited_emitter = false
-			_visited_reciever = false
+			_visited_emitter = null
+			_visited_reciever = null
 
 			var ui = main.get_nodes_at(event.position, ['ui']);
 			if len(ui) > 0:
@@ -54,9 +54,9 @@ func _unhandled_input(event):
 
 func _add_points_at(pos):
 	var target_point = ''
-	if _visited_emitter == false and _visited_reciever == false:
+	if _visited_emitter == null and _visited_reciever == null:
 		target_point = 'emitter'
-	elif _visited_emitter == true and _visited_reciever == false:
+	elif _visited_emitter != null and _visited_reciever == null:
 		target_point = 'receiver';
 
 	if target_point == '':
@@ -66,7 +66,15 @@ func _add_points_at(pos):
 	for node in nodes:
 		if node.visible and _position_path.find(node) == -1:
 			_position_path.append(node.global_position)
-			_visited_emitter = true
+			if target_point == 'emitter':
+				_visited_emitter = node
+			elif target_point == 'receiver':
+				_visited_reciever = node
+			return
+
+	if _position_path != []:
+		if _position_path[len(_position_path) - 1].distance_to(_latest_position) > 50.0:
+			_position_path.append(_latest_position)
 
 func _update():
 	if _target_belt == null:
@@ -75,7 +83,7 @@ func _update():
 	var positions = []
 	for pos in _position_path:
 		positions.append(pos)
-	if (_visited_emitter == false or _visited_reciever == false) and _latest_position != Vector2.ZERO:
+	if (_visited_emitter == null or _visited_reciever == null) and _latest_position != Vector2.ZERO:
 		positions.append(_latest_position)
 
 	_target_belt.update(positions)
@@ -84,7 +92,18 @@ func _approve():
 	if _target_belt == null:
 		return
 
-	if len(_position_path) < 2:
+	if _visited_emitter == null or _visited_reciever == null:
+		_target_belt.queue_free()
+		return
+	
+	for belt in main.get_children_in_groups(belts, ['belt']):
+		if belt != _target_belt:
+			if belt.line.get_point_position(0) == _position_path[0] and \
+				belt.line.get_point_position(belt.line.get_point_count() - 1) == _position_path[_position_path.size() - 1]:
+				_target_belt.queue_free()
+				return
+	
+	if not _visited_emitter.can_create_new_belt():
 		_target_belt.queue_free()
 		return
 

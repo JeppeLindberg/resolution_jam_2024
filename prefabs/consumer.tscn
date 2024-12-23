@@ -8,7 +8,7 @@
 radius = 50.01
 
 [node name="consumer" type="StaticBody2D"]
-z_index = 100
+z_index = -10
 script = ExtResource("1_ayd8j")
 filled_color = Color(0.541176, 0.690196, 0.376471, 1)
 empty_color = Color(0.705882, 0.321569, 0.321569, 1)

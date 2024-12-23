@@ -57,3 +57,13 @@ func activate():
 	visible = true
 	collider.disabled = false
 	current_inventory = 0.0;
+
+func can_create_new_belt():
+	var current_belts = 0
+	var paths = main.get_children_in_groups(belts, ['path'], true)
+	for path in paths:
+		if path.curve.point_count > 0 and path.curve.get_point_position(0).distance_to(global_position) < 1.0:
+			current_belts += 1
+			if current_belts > max_inventory:
+				return(false)
+	return(true)

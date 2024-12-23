@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://j5xgll1v0gbs"]
+
+[ext_resource type="Script" path="res://scripts/combiner.gd" id="1_il2v3"]
+[ext_resource type="Script" path="res://scripts/combiner_receiver.gd" id="2_85srx"]
+[ext_resource type="PackedScene" uid="uid://bdyla24q6g16f" path="res://prefabs/belt_half_speed.tscn" id="2_afyrh"]
+[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="4_u7lfp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbah5"]
+radius = 50.01
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grfj5"]
+radius = 50.01
+
+[node name="combiner" type="Node2D" node_paths=PackedStringArray("reciever_1", "reciever_2", "reciever_3", "reciever_4", "drop_1", "drop_2", "drop_3", "drop_4", "emitter")]
+script = ExtResource("1_il2v3")
+reciever_1 = NodePath("receiver1")
+reciever_2 = NodePath("receiver2")
+reciever_3 = NodePath("receiver3")
+reciever_4 = NodePath("receiver4")
+drop_1 = NodePath("drop1")
+drop_2 = NodePath("drop2")
+drop_3 = NodePath("drop3")
+drop_4 = NodePath("drop4")
+emitter = NodePath("emitter")
+belt_prefab = ExtResource("2_afyrh")
+
+[node name="receiver1" type="StaticBody2D" parent="."]
+z_index = -10
+position = Vector2(-50, -50)
+script = ExtResource("2_85srx")
+
+[node name="sprite" type="Sprite2D" parent="receiver1"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_u7lfp")
+
+[node name="collider" type="CollisionShape2D" parent="receiver1"]
+shape = SubResource("CircleShape2D_bbah5")
+
+[node name="receiver2" type="StaticBody2D" parent="."]
+z_index = -10
+position = Vector2(50, -50)
+script = ExtResource("2_85srx")
+
+[node name="sprite" type="Sprite2D" parent="receiver2"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_u7lfp")
+
+[node name="collider" type="CollisionShape2D" parent="receiver2"]
+shape = SubResource("CircleShape2D_bbah5")
+
+[node name="receiver3" type="StaticBody2D" parent="."]
+z_index = -10
+position = Vector2(50, 50)
+script = ExtResource("2_85srx")
+
+[node name="sprite" type="Sprite2D" parent="receiver3"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_u7lfp")
+
+[node name="collider" type="CollisionShape2D" parent="receiver3"]
+shape = SubResource("CircleShape2D_bbah5")
+
+[node name="receiver4" type="StaticBody2D" parent="."]
+z_index = -10
+position = Vector2(-50, 50)
+script = ExtResource("2_85srx")
+
+[node name="sprite" type="Sprite2D" parent="receiver4"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_u7lfp")
+
+[node name="collider" type="CollisionShape2D" parent="receiver4"]
+shape = SubResource("CircleShape2D_bbah5")
+
+[node name="drop1" type="Node2D" parent="."]
+position = Vector2(-15, -15)
+
+[node name="drop2" type="Node2D" parent="."]
+position = Vector2(15, -15)
+
+[node name="drop3" type="Node2D" parent="."]
+position = Vector2(15, 15)
+
+[node name="drop4" type="Node2D" parent="."]
+position = Vector2(-15, 15)
+
+[node name="emitter" type="StaticBody2D" parent="."]
+z_index = -10
+
+[node name="sprite" type="Sprite2D" parent="emitter"]
+visible = false
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_u7lfp")
+
+[node name="collider" type="CollisionShape2D" parent="emitter"]
+shape = SubResource("CircleShape2D_grfj5")

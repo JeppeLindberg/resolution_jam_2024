@@ -8,3 +8,8 @@ func _ready() -> void:
 func recolor(new_color):
 	sprite.self_modulate = new_color
 
+func matches(shape):
+	if sprite.self_modulate != shape.sprite.self_modulate:
+		return(false)
+	return(true)
+

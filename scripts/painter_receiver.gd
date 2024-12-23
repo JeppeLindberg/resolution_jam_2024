@@ -12,14 +12,14 @@ func _ready() -> void:
 	add_to_group('point')
 	add_to_group('receiver')
 
-func can_recieve_shape(shape):
+func can_receive_shape(_shape):
 	var vehicles = main.get_children_in_groups(painter, ['vehicle'], true)
 	for vehicle in vehicles:
 		if vehicle.progress < 30.0:
 			return(false)
 	return(true)
 
-func recieve_shape(shape):
+func receive_shape(shape):
 	var paths = main.get_children_in_groups(painter, ['path'], true)
 	for path in paths:
 		if path.has_space_at(global_position):

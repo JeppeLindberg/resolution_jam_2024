@@ -26,11 +26,12 @@ func _ready() -> void:
 	_update_text()
 	deactivate()
 
-func can_recieve_shape(shape):
+func can_receive_shape(_shape):
 	return(true)
 
-func recieve_shape(shape):
-	current_inventory += 1.0
+func receive_shape(shape):
+	if shape.matches(shape_holder.get_child(0)):
+		current_inventory += 1.0
 	if current_inventory > max_inventory:
 		current_inventory = max_inventory
 	shape.queue_free()

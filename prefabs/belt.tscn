@@ -10,6 +10,7 @@
 bake_interval = 1.0
 
 [node name="belt" type="StaticBody2D"]
+z_index = 10
 script = ExtResource("1_tebgu")
 relay_prefab = ExtResource("2_6xwh1")
 

@@ -9,7 +9,7 @@
 radius = 50.01
 
 [node name="spawner" type="StaticBody2D"]
-z_index = 100
+z_index = -10
 script = ExtResource("1_5dq1s")
 spawn_shape = ExtResource("2_ebfxw")
 
