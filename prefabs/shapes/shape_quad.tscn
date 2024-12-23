@@ -4,4 +4,6 @@
 
 [node name="shape_quad" type="Node2D"]
 script = ExtResource("1_boyty")
-size = 9.0
+move_size = 9.0
+mult_size = 1.0
+minus_size = 0.039

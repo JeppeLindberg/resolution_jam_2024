@@ -2,31 +2,34 @@ extends Node2D
 
 var type = 'quad'
 
-@export var size = 10.0
+@export var move_size = 4.5
+@export var mult_size = 0.5
+@export var minus_size = 0.05
 
 func _ready() -> void:
 	add_to_group('shape')
 
 func create_from(shapes):
-	var avg_position = Vector2.ZERO
 	for shape in shapes:
-		avg_position += shape.sprite.global_position
-	avg_position /= len(shapes)
+		for sprite in shape.get_children():
+			if not sprite is Sprite2D:
+				continue
 
-	for shape in shapes:
-		var sprite = shape.sprite
-		var delta_vec = sprite.global_position - avg_position
+			var delta_vec = sprite.global_position - global_position
+			var sprite_old_position = sprite.position
+			sprite.reparent(self)
+			sprite.position = sprite_old_position * 0.5
 
-		sprite.reparent(self)
-
-		if delta_vec.x < 0 and delta_vec.y < 0:
-			sprite.position = Vector2(-1, -1) * size
-		elif delta_vec.x < 0 and delta_vec.y > 0:
-			sprite.position = Vector2(-1, 1) * size
-		elif delta_vec.x > 0 and delta_vec.y < 0:
-			sprite.position = Vector2(1, -1) * size
-		elif delta_vec.x > 0 and delta_vec.y > 0:
-			sprite.position = Vector2(1, 1) * size
+			if delta_vec.x < 0 and delta_vec.y < 0:
+				sprite.position += Vector2(-1, -1) * move_size
+			elif delta_vec.x < 0 and delta_vec.y > 0:
+				sprite.position += Vector2(-1, 1) * move_size
+			elif delta_vec.x > 0 and delta_vec.y < 0:
+				sprite.position += Vector2(1, -1) * move_size
+			elif delta_vec.x > 0 and delta_vec.y > 0:
+				sprite.position += Vector2(1, 1) * move_size
+			
+			sprite.scale = Vector2(sprite.scale.x * mult_size - minus_size, sprite.scale.y * mult_size - minus_size)
 
 func recolor(new_color):
 	for child in get_children():

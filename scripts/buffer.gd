@@ -19,7 +19,7 @@ func add_buffer_shape(shape):
 		shape_holder = offset.get_child(0).get_node('shape_holder')
 		var old_shape = shape_holder.get_child(0)
 		if not old_shape.matches(shape):
-			for child in get_children():
+			for child in offset.get_children():
 				child.free()
 			add_buffer_shape(shape)
 			return;
@@ -53,4 +53,3 @@ func cleanup():
 	if shape_holder.get_child_count() == 0:
 		for child in offset.get_children():
 			child.queue_free()
-

@@ -129,6 +129,11 @@ texture = ExtResource("3_f7yio")
 position = Vector2(0, -256)
 script = ExtResource("8_v3m11")
 
+[node name="sprite2" type="Sprite2D" parent="world/camera/ui/continue_button"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(2.88, 0.759999)
+texture = ExtResource("5_csge8")
+
 [node name="sprite" type="Sprite2D" parent="world/camera/ui/continue_button"]
 texture = ExtResource("8_mcm47")
 
