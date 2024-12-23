@@ -13,6 +13,10 @@ func _ready() -> void:
 	add_to_group('receiver')
 
 func can_recieve_shape(shape):
+	var vehicles = main.get_children_in_groups(painter, ['vehicle'], true)
+	for vehicle in vehicles:
+		if vehicle.progress < 30.0:
+			return(false)
 	return(true)
 
 func recieve_shape(shape):

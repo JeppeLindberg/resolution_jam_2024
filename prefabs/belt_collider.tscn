@@ -5,6 +5,7 @@ radius = 16.298
 
 [node name="belt_collider_vehicle" type="PathFollow2D"]
 rotates = false
+loop = false
 
 [node name="collider" type="CollisionShape2D" parent="."]
 scale = Vector2(0.8, 0.8)

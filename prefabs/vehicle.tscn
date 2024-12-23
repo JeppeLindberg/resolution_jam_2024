@@ -6,6 +6,7 @@
 
 [node name="vehicle" type="PathFollow2D"]
 rotates = false
+loop = false
 script = ExtResource("1_5itdj")
 dissipate_shape_prefab = ExtResource("2_irin3")
 

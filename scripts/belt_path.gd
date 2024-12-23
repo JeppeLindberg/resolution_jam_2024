@@ -9,6 +9,14 @@ extends Path2D
 func _ready() -> void:
 	add_to_group('path')
 
+func _process(delta: float) -> void:
+	var vehicles = main.get_children_in_groups(self, ['vehicle'])
+	vehicles.sort_custom(progress_desc)
+	var max_progress = 99999.0
+	for vehicle in vehicles:
+		vehicle.commit_progress(delta, max_progress)
+		max_progress = vehicle.progress - 30.0
+
 func has_space_at(pos):
 	if curve.point_count == 0:
 		return(false)
@@ -71,3 +79,5 @@ func add_node_along_path(node_prefab, interval):
 
 	return(new_nodes)
 	
+func progress_desc(a, b): 
+	return a.progress > b.progress
