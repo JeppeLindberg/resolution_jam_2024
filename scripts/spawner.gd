@@ -67,3 +67,6 @@ func can_create_new_belt():
 			if current_belts > max_inventory:
 				return(false)
 	return(true)
+	
+func allow_connect_to(_receiver):
+	return(true)

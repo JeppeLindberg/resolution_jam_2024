@@ -32,7 +32,6 @@ func emit_shape(shape):
 	var paths = main.get_children_in_groups(belts, ['path'], true)
 	for path in paths:
 		if path.has_space_at(global_position):
-			print('bla')
 			path.add_shape(buffer.pop())
 
 	buffer.cleanup()
@@ -53,4 +52,7 @@ func _number_of_outgoing_belts():
 	return(result)
 
 func can_create_new_belt():
+	return(true)
+
+func allow_connect_to(_receiver):
 	return(true)

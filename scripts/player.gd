@@ -65,6 +65,10 @@ func _add_points_at(pos):
 	var nodes = main.get_nodes_at(pos, [target_point]);
 	for node in nodes:
 		if node.visible and _position_path.find(node) == -1:
+			if _visited_emitter != null and target_point == 'receiver':
+				if not _visited_emitter.allow_connect_to(node):
+					continue
+
 			_position_path.append(node.global_position)
 			if target_point == 'emitter':
 				_visited_emitter = node

@@ -3,6 +3,8 @@ extends PathFollow2D
 @onready var main = get_node('/root/main')
 @onready var points = get_node('/root/main/world/points')
 @onready var shape_holder = get_node('shape_holder')
+@onready var single = get_node('single')
+@onready var quad = get_node('quad')
 
 @export var dissipate_shape_prefab: PackedScene
 
@@ -15,13 +17,23 @@ func _ready():
 func set_new_shape(shape_prefab):	
 	if shape_holder == null:
 		shape_holder = get_node('shape_holder')
-	main.create_node(shape_prefab, shape_holder)
+	var shape = main.create_node(shape_prefab, shape_holder)
+	_update_sprite(shape)
 
 func set_shape(shape):	
 	if shape_holder == null:
 		shape_holder = get_node('shape_holder')
 	shape.reparent(shape_holder)
 	shape.position = Vector2.ZERO;
+	_update_sprite(shape)
+
+func _update_sprite(shape):
+	if shape.type == 'single':
+		quad.visible = false
+		single.visible = true
+	elif shape.type == 'quad':
+		quad.visible = true
+		single.visible = false
 
 func commit_progress(delta: float, max_progress: float) -> void:
 	_init_shape()
@@ -66,4 +78,5 @@ func dissipate_shape():
 			dissipate_shape_node.global_scale = child.global_scale
 			dissipate_shape_node.texture = child.texture
 			dissipate_shape_node.self_modulate = child.self_modulate
+
 

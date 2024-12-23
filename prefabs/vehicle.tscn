@@ -10,12 +10,27 @@ loop = false
 script = ExtResource("1_5itdj")
 dissipate_shape_prefab = ExtResource("2_irin3")
 
-[node name="border" type="Sprite2D" parent="."]
+[node name="quad" type="Node2D" parent="."]
+
+[node name="border" type="Sprite2D" parent="quad"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.49, 0.49)
+texture = ExtResource("2_p57mp")
+
+[node name="inner" type="Sprite2D" parent="quad"]
+self_modulate = Color(0.94902, 0.941176, 0.898039, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_p57mp")
+
+[node name="single" type="Node2D" parent="."]
+visible = false
+
+[node name="border" type="Sprite2D" parent="single"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_p57mp")
 
-[node name="inner" type="Sprite2D" parent="."]
+[node name="inner" type="Sprite2D" parent="single"]
 self_modulate = Color(0.94902, 0.941176, 0.898039, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_p57mp")

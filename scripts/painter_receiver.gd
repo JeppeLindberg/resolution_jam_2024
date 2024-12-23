@@ -11,7 +11,7 @@ extends StaticBody2D
 func _ready() -> void:
 	add_to_group('point')
 	add_to_group('receiver')
-
+	
 func can_receive_shape(_shape):
 	var vehicles = main.get_children_in_groups(painter, ['vehicle'], true)
 	for vehicle in vehicles:

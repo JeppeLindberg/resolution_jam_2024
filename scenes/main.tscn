@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dmemqpdkflenm"]
+[gd_scene load_steps=24 format=3 uid="uid://dmemqpdkflenm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bbdsxsl50005r" path="res://prefabs/shapes/circle_blue.tscn" id="15_75q2q"]
 [ext_resource type="PackedScene" uid="uid://6b1oxmrvvr0w" path="res://prefabs/painter.tscn" id="16_5x7d6"]
 [ext_resource type="PackedScene" uid="uid://j5xgll1v0gbs" path="res://prefabs/combiner.tscn" id="17_62dwh"]
+[ext_resource type="PackedScene" uid="uid://dwocphwjmn3ij" path="res://prefabs/shapes/stage_3_quad.tscn" id="17_66hkl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n0rk2"]
 viewport_path = NodePath("timer_container/timer_viewport")
@@ -190,8 +191,14 @@ max_inventory_dict = {
 position = Vector2(861, 226)
 new_color = Color(0.294118, 0.501961, 0.792157, 1)
 
+[node name="stage_3_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(975, 512)
+consume_shape = ExtResource("17_66hkl")
+active_from = 3
+max_inventory_dict = {}
+
 [node name="stage_3_combiner" parent="world/points" instance=ExtResource("17_62dwh")]
-position = Vector2(638, 396)
+position = Vector2(640, 396)
 active_from = 3
 
 [node name="environment" type="WorldEnvironment" parent="world"]

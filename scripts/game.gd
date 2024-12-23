@@ -3,7 +3,7 @@ extends Node2D
 @onready var main = get_node('/root/main')
 @onready var points = get_node('/root/main/world/points')
 @onready var belts = get_node('/root/main/world/belts')
-
+	
 @export var max_time: float = 60.0
 @export var time: float = 60.0
 @export var timer_running = true
