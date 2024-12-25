@@ -72,9 +72,9 @@ func can_create_new_belt():
 		return(true)
 	return(false)
 
-func allow_connect_to(receiver):
-	var receivers = main.get_children_in_groups(combiner, ['receiver'])
-	if receivers.find(receiver) != -1:
-		return(false)
+func allow_connect_to(_receiver):
+	# var receivers = main.get_children_in_groups(combiner, ['receiver'])
+	# if receivers.find(receiver) != -1:
+	# 	return(false)
 
 	return(true)

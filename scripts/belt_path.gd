@@ -3,6 +3,7 @@ extends Path2D
 @onready var main = get_node('/root/main')
 
 @export var collider_prefab: PackedScene
+@export var arrow_prefab: PackedScene
 @export var speed_mult = 1.0
 
 
@@ -51,14 +52,20 @@ func approve():
 	
 	curve = new_curve
 
-	var new_nodes = add_node_along_path(collider_prefab, 20.0)
-	for node in new_nodes:
-		var collision_shape = node.get_node('collider')
-		var body = self
+	var body = self
+	var new_colliders = add_node_along_path(collider_prefab, 20.0)
+	for collider in new_colliders:
+		var collision_shape = collider.get_node('collider')
 		while not body is StaticBody2D:
 			body = body.get_parent()
 		collision_shape.reparent(body)
-		node.queue_free()
+		collider.queue_free()
+	
+	if arrow_prefab != null:
+		var new_arrows = add_node_along_path(arrow_prefab, 30.0)
+		for arrow in new_arrows:
+			arrow.get_child(0).reparent(body, true)
+			arrow.queue_free()
 
 func add_node_along_path(node_prefab, interval):
 	var prev_progress = 0.0

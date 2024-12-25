@@ -1,17 +1,17 @@
 extends Node2D
 
 @onready var main = get_node('/root/main')
-@onready var color = get_node('sprite/color')
+
+@export var active_from = 0
 
 @export var reciever: Node2D
 @export var emitter: Node2D
 @export var belt_prefab: PackedScene
 
-@export var new_color: Color
-
 
 func _ready():
-	color.self_modulate = new_color
+	for point in main.get_children_in_groups(self, ['point']):
+		point.active_from = active_from
 	deactivate()
 
 func deactivate():

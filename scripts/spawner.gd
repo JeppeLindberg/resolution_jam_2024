@@ -5,6 +5,7 @@ extends StaticBody2D
 @export var spawn_shape: PackedScene
 
 @onready var main = get_node('/root/main')
+@onready var game = get_node('/root/main/game')
 @onready var inventory_count = get_node('inventory_count/count')
 @onready var shape_holder = get_node('inventory_count/shape_holder')
 @onready var belts = get_node('/root/main/world/belts')
@@ -14,6 +15,9 @@ extends StaticBody2D
 @export var inactive_from = 9999
 var current_inventory = 0.0
 @export var max_inventory: float = 5.0
+@export var max_inventory_dict: Dictionary = {0: 5.0}
+@export var spawns_per_sec: float = 1.0
+@export var spawns_per_sec_dict: Dictionary = {0: 1.0}
 
 
 func _ready() -> void:
@@ -24,7 +28,7 @@ func _ready() -> void:
 	deactivate()
 
 func _process(delta: float) -> void:
-	current_inventory += delta * main.delta_mult
+	current_inventory += spawns_per_sec * delta * main.delta_mult
 	if current_inventory > max_inventory:
 		current_inventory = max_inventory
 
@@ -57,6 +61,11 @@ func activate():
 	visible = true
 	collider.disabled = false
 	current_inventory = 0.0;
+
+	if max_inventory_dict.has(game.current_stage):
+		max_inventory = max_inventory_dict[game.current_stage]
+	if spawns_per_sec_dict.has(game.current_stage):
+		spawns_per_sec = spawns_per_sec_dict[game.current_stage]
 
 func can_create_new_belt():
 	var current_belts = 0

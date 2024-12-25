@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmemqpdkflenm"]
+[gd_scene load_steps=26 format=3 uid="uid://dmemqpdkflenm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
@@ -18,7 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://bbdsxsl50005r" path="res://prefabs/shapes/circle_blue.tscn" id="15_75q2q"]
 [ext_resource type="PackedScene" uid="uid://6b1oxmrvvr0w" path="res://prefabs/painter.tscn" id="16_5x7d6"]
 [ext_resource type="PackedScene" uid="uid://j5xgll1v0gbs" path="res://prefabs/combiner.tscn" id="17_62dwh"]
-[ext_resource type="PackedScene" path="res://prefabs/shapes/stage_3_quad_2.tscn" id="17_t4kjw"]
+[ext_resource type="PackedScene" uid="uid://b68fyboj40g6t" path="res://prefabs/shapes/stage_3_quad_2.tscn" id="17_t4kjw"]
+[ext_resource type="PackedScene" uid="uid://cbreufax8ennl" path="res://prefabs/shapes/stage_4_quad.tscn" id="19_4dqjj"]
+[ext_resource type="PackedScene" uid="uid://cycj6r5p06ipx" path="res://prefabs/container.tscn" id="20_jeu5s"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n0rk2"]
 viewport_path = NodePath("timer_container/timer_viewport")
@@ -122,11 +124,12 @@ render_layers = 1
 [node name="ui" type="Node2D" parent="world/camera"]
 
 [node name="timer" type="Sprite2D" parent="world/camera/ui"]
+z_index = -200
 material = SubResource("ShaderMaterial_72c1n")
 texture = ExtResource("3_f7yio")
 
 [node name="continue_button" type="StaticBody2D" parent="world/camera/ui"]
-position = Vector2(0, -256)
+position = Vector2(0, -267)
 script = ExtResource("8_v3m11")
 
 [node name="sprite2" type="Sprite2D" parent="world/camera/ui/continue_button"]
@@ -168,6 +171,14 @@ belt_prefab = ExtResource("3_2i38k")
 
 [node name="spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
 position = Vector2(385, 268)
+max_inventory_dict = {
+0: 5.0,
+4: 10.0
+}
+spawns_per_sec_dict = {
+0: 1.0,
+4: 2.0
+}
 
 [node name="consumer" parent="world/points" instance=ExtResource("4_eed4j")]
 position = Vector2(930, 446)
@@ -193,24 +204,35 @@ max_inventory_dict = {
 }
 
 [node name="stage_2_painter" parent="world/points" instance=ExtResource("16_5x7d6")]
-position = Vector2(861, 226)
+position = Vector2(583, 226)
 new_color = Color(0.294118, 0.501961, 0.792157, 1)
 
 [node name="stage_3_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
 position = Vector2(975, 512)
 consume_shape = ExtResource("17_t4kjw")
 active_from = 3
+inactive_from = 4
 max_inventory_dict = {}
 
 [node name="stage_3_combiner" parent="world/points" instance=ExtResource("17_62dwh")]
-position = Vector2(640, 396)
+position = Vector2(640, 420)
 active_from = 3
+
+[node name="stage_4_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(1020, 443)
+consume_shape = ExtResource("19_4dqjj")
+active_from = 4
+max_inventory_dict = {}
+
+[node name="stage_4_container" parent="world/points" instance=ExtResource("20_jeu5s")]
+position = Vector2(583, 619)
+active_from = 4
 
 [node name="environment" type="WorldEnvironment" parent="world"]
 environment = SubResource("Environment_ef7gb")
 
 [node name="game" type="Node2D" parent="." node_paths=PackedStringArray("timer", "continue_button")]
 script = ExtResource("2_cocho")
-current_stage = 2
+current_stage = 3
 timer = NodePath("../timer_container/timer_viewport/timer")
 continue_button = NodePath("../world/camera/ui/continue_button")

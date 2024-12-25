@@ -12,6 +12,7 @@ func add_buffer_shape(shape):
 
 	if offset.get_child_count() == 0:
 		buffer_holder = main.create_node(buffer_holder_prefab, offset)
+		buffer_holder.add_to_group('buffer_holder')
 		shape_holder = buffer_holder.get_node('shape_holder')
 		shape.reparent(shape_holder)
 		shape.position = Vector2(0, 0)

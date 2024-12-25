@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://4kcu4ra0ydm4"]
 
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="1_5dq1s"]
-[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="1_m1187"]
 [ext_resource type="PackedScene" uid="uid://d2yym3g76a5de" path="res://prefabs/shapes/circle.tscn" id="2_ebfxw"]
+[ext_resource type="Texture2D" uid="uid://fdb7amnqmfww" path="res://sprites/hexagon.png" id="3_qoc8j"]
 [ext_resource type="PackedScene" uid="uid://781ty7w23kak" path="res://prefabs/inventory_count.tscn" id="4_jawub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbah5"]
@@ -16,7 +16,12 @@ spawn_shape = ExtResource("2_ebfxw")
 [node name="sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_m1187")
+texture = ExtResource("3_qoc8j")
+
+[node name="sprite2" type="Sprite2D" parent="sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.712765, 0.712765)
+texture = ExtResource("3_qoc8j")
 
 [node name="collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bbah5")

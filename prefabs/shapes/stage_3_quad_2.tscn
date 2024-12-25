@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://b68fyboj40g6t"]
 
 [ext_resource type="Script" path="res://scripts/shape_quad.gd" id="1_hyae7"]
-[ext_resource type="Texture2D" path="res://sprites/white_circle.png" id="2_u4eoj"]
+[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="2_u4eoj"]
 
 [node name="shape_quad" type="Node2D"]
 scale = Vector2(1.25, 1.25)
@@ -17,7 +17,7 @@ scale = Vector2(0.121, 0.121)
 texture = ExtResource("2_u4eoj")
 
 [node name="_Sprite2D_2681" type="Sprite2D" parent="."]
-self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
 position = Vector2(9, -9)
 scale = Vector2(0.121, 0.121)
 texture = ExtResource("2_u4eoj")
@@ -29,7 +29,7 @@ scale = Vector2(0.121, 0.121)
 texture = ExtResource("2_u4eoj")
 
 [node name="_Sprite2D_2683" type="Sprite2D" parent="."]
-self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
 position = Vector2(-9, 9)
 scale = Vector2(0.121, 0.121)
 texture = ExtResource("2_u4eoj")

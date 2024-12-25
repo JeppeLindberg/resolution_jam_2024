@@ -1,23 +1,50 @@
-[gd_scene load_steps=9 format=3 uid="uid://6b1oxmrvvr0w"]
+[gd_scene load_steps=12 format=3 uid="uid://6b1oxmrvvr0w"]
 
 [ext_resource type="Script" path="res://scripts/painter.gd" id="1_s1vmd"]
 [ext_resource type="Script" path="res://scripts/painter_receiver.gd" id="1_xy1cj"]
 [ext_resource type="PackedScene" uid="uid://bdyla24q6g16f" path="res://prefabs/belt_half_speed.tscn" id="2_6dasn"]
 [ext_resource type="Script" path="res://scripts/painter_emitter.gd" id="3_20ceq"]
 [ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="3_hfn4u"]
+[ext_resource type="Texture2D" uid="uid://c3hqivygpah5k" path="res://sprites/white_square.png" id="3_vv22m"]
+[ext_resource type="Texture2D" uid="uid://6w0q12up61ty" path="res://sprites/painter_base.png" id="4_i5k7n"]
+[ext_resource type="Texture2D" uid="uid://dtl7fya0fn4m4" path="res://sprites/painter_spray.png" id="5_tycp8"]
 [ext_resource type="PackedScene" uid="uid://5qc5y71d6jp2" path="res://prefabs/buffer.tscn" id="6_yufdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbah5"]
-radius = 50.01
+radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_grfj5"]
-radius = 50.01
+radius = 30.0
 
 [node name="painter" type="Node2D" node_paths=PackedStringArray("reciever", "emitter")]
 script = ExtResource("1_s1vmd")
 reciever = NodePath("receiver")
 emitter = NodePath("emitter")
 belt_prefab = ExtResource("2_6dasn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+z_index = -200
+position = Vector2(57, -32)
+scale = Vector2(1.14, 0.04)
+texture = ExtResource("3_vv22m")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+z_index = -200
+position = Vector2(57, 32)
+scale = Vector2(1.14, 0.04)
+texture = ExtResource("3_vv22m")
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.392157, 0.388235, 0.396078, 1)
+position = Vector2(56, -59)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_i5k7n")
+
+[node name="color" type="Sprite2D" parent="sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+texture = ExtResource("5_tycp8")
 
 [node name="receiver" type="StaticBody2D" parent="."]
 z_index = -10
@@ -26,7 +53,12 @@ active_from = 2
 
 [node name="sprite" type="Sprite2D" parent="receiver"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_hfn4u")
+
+[node name="sprite2" type="Sprite2D" parent="receiver/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_hfn4u")
 
 [node name="collider" type="CollisionShape2D" parent="receiver"]
@@ -38,12 +70,17 @@ position = Vector2(113, 0)
 script = ExtResource("3_20ceq")
 active_from = 2
 
-[node name="buffer" parent="emitter" instance=ExtResource("6_yufdu")]
-
 [node name="sprite" type="Sprite2D" parent="emitter"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_hfn4u")
+
+[node name="sprite2" type="Sprite2D" parent="emitter/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_hfn4u")
+
+[node name="buffer" parent="emitter" instance=ExtResource("6_yufdu")]
 
 [node name="collider" type="CollisionShape2D" parent="emitter"]
 shape = SubResource("CircleShape2D_grfj5")

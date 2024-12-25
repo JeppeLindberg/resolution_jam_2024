@@ -7,6 +7,6 @@
 script = ExtResource("1_v30js")
 
 [node name="sprite" type="Sprite2D" parent="."]
-self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_cy8u6")

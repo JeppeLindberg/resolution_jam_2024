@@ -15,10 +15,12 @@ script = ExtResource("1_tebgu")
 relay_prefab = ExtResource("2_6xwh1")
 
 [node name="line" type="Line2D" parent="."]
+z_index = -70
 default_color = Color(0.270588, 0.266667, 0.309804, 1)
 script = ExtResource("1_rjrkr")
 
 [node name="path" type="Path2D" parent="line"]
+z_index = 70
 curve = SubResource("Curve2D_wkkhc")
 script = ExtResource("4_7xpd8")
 collider_prefab = ExtResource("6_5oo55")

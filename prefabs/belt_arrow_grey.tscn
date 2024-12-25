@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7uhmm1v3dney"]
+
+[ext_resource type="Texture2D" uid="uid://si2rkglxsjl5" path="res://sprites/arrow.png" id="1_dlsup"]
+
+[node name="belt_arrow_vehicle" type="PathFollow2D"]
+loop = false
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.392157, 0.388235, 0.396078, 1)
+z_index = -70
+rotation = 1.5708
+scale = Vector2(0.4, 0.8)
+texture = ExtResource("1_dlsup")
+
+[node name="sprite2" type="Sprite2D" parent="sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+position = Vector2(3.27835e-07, 3.75)
+scale = Vector2(0.365, 0.365)
+texture = ExtResource("1_dlsup")

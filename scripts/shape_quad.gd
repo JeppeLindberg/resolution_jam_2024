@@ -30,6 +30,8 @@ func create_from(shapes):
 				sprite.position += Vector2(1, 1) * move_size
 			
 			sprite.scale = Vector2(sprite.scale.x * mult_size - minus_size, sprite.scale.y * mult_size - minus_size)
+			if sprite.scale.x < 0.01:
+				sprite.queue_free()
 
 func recolor(new_color):
 	for child in get_children():

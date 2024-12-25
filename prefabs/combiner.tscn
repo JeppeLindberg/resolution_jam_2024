@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cg2qryo6hncgc" path="res://prefabs/shapes/shape_quad.tscn" id="6_b35gg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbah5"]
-radius = 50.01
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_grfj5"]
 radius = 50.01
@@ -33,7 +33,12 @@ script = ExtResource("2_85srx")
 
 [node name="sprite" type="Sprite2D" parent="receiver1"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_u7lfp")
+
+[node name="sprite2" type="Sprite2D" parent="receiver1/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_u7lfp")
 
 [node name="collider" type="CollisionShape2D" parent="receiver1"]
@@ -46,7 +51,12 @@ script = ExtResource("2_85srx")
 
 [node name="sprite" type="Sprite2D" parent="receiver2"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_u7lfp")
+
+[node name="sprite2" type="Sprite2D" parent="receiver2/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_u7lfp")
 
 [node name="collider" type="CollisionShape2D" parent="receiver2"]
@@ -59,7 +69,12 @@ script = ExtResource("2_85srx")
 
 [node name="sprite" type="Sprite2D" parent="receiver3"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_u7lfp")
+
+[node name="sprite2" type="Sprite2D" parent="receiver3/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_u7lfp")
 
 [node name="collider" type="CollisionShape2D" parent="receiver3"]
@@ -72,7 +87,12 @@ script = ExtResource("2_85srx")
 
 [node name="sprite" type="Sprite2D" parent="receiver4"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_u7lfp")
+
+[node name="sprite2" type="Sprite2D" parent="receiver4/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_u7lfp")
 
 [node name="collider" type="CollisionShape2D" parent="receiver4"]
@@ -97,7 +117,12 @@ quad_shape_prefab = ExtResource("6_b35gg")
 
 [node name="sprite" type="Sprite2D" parent="emitter"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_u7lfp")
+
+[node name="sprite2" type="Sprite2D" parent="emitter/sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.81, 0.81)
 texture = ExtResource("4_u7lfp")
 
 [node name="collider" type="CollisionShape2D" parent="emitter"]

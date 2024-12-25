@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbreufax8ennl"]
+
+[ext_resource type="Script" path="res://scripts/shape_quad.gd" id="1_10vwd"]
+[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="2_sfwvr"]
+
+[node name="shape_quad" type="Node2D"]
+scale = Vector2(1.25, 1.25)
+script = ExtResource("1_10vwd")
+move_size = 9.0
+mult_size = 1.0
+minus_size = 0.039
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(-9, -9)
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_sfwvr")
+
+[node name="_Sprite2D_4912" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(4.5, -13.5)
+scale = Vector2(0.082, 0.082)
+texture = ExtResource("2_sfwvr")
+
+[node name="_Sprite2D_2441" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(13.5, -13.5)
+scale = Vector2(0.082, 0.082)
+texture = ExtResource("2_sfwvr")
+
+[node name="_Sprite2D_2442" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(13.5, -4.5)
+scale = Vector2(0.082, 0.082)
+texture = ExtResource("2_sfwvr")
+
+[node name="_Sprite2D_2443" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(4.5, -4.5)
+scale = Vector2(0.082, 0.082)
+texture = ExtResource("2_sfwvr")
+
+[node name="_Sprite2D_4913" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(9, 9)
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_sfwvr")
+
+[node name="_Sprite2D_4914" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(-9, 9)
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_sfwvr")

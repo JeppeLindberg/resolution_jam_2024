@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdyla24q6g16f"]
+[gd_scene load_steps=8 format=3 uid="uid://bdyla24q6g16f"]
 
 [ext_resource type="Script" path="res://scripts/belt.gd" id="1_di0lj"]
 [ext_resource type="PackedScene" uid="uid://bnrv806b300d5" path="res://prefabs/relay.tscn" id="2_tpl2q"]
 [ext_resource type="Script" path="res://scripts/belt_line.gd" id="3_sxalm"]
 [ext_resource type="Script" path="res://scripts/belt_path.gd" id="4_uouwd"]
 [ext_resource type="PackedScene" uid="uid://b554tckyxm8dh" path="res://prefabs/belt_collider.tscn" id="5_lp0pi"]
+[ext_resource type="PackedScene" uid="uid://b7uhmm1v3dney" path="res://prefabs/belt_arrow_grey.tscn" id="6_jbu7q"]
 
 [sub_resource type="Curve2D" id="Curve2D_wkkhc"]
 bake_interval = 1.0
@@ -15,11 +16,14 @@ relay_prefab = ExtResource("2_tpl2q")
 allow_delete = false
 
 [node name="line" type="Line2D" parent="."]
-default_color = Color(0.270588, 0.266667, 0.309804, 1)
+z_index = -70
+default_color = Color(0.392157, 0.388235, 0.396078, 1)
 script = ExtResource("3_sxalm")
 
 [node name="path" type="Path2D" parent="line"]
+z_index = 70
 curve = SubResource("Curve2D_wkkhc")
 script = ExtResource("4_uouwd")
 collider_prefab = ExtResource("5_lp0pi")
+arrow_prefab = ExtResource("6_jbu7q")
 speed_mult = 0.5

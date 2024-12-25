@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://cycj6r5p06ipx"]
+
+[ext_resource type="Script" path="res://scripts/container.gd" id="1_48orl"]
+[ext_resource type="PackedScene" uid="uid://bdyla24q6g16f" path="res://prefabs/belt_half_speed.tscn" id="2_vgio1"]
+[ext_resource type="Texture2D" uid="uid://c3hqivygpah5k" path="res://sprites/white_square.png" id="3_a45kd"]
+[ext_resource type="Script" path="res://scripts/container_receiver.gd" id="3_kor7q"]
+[ext_resource type="Texture2D" uid="uid://p1ty7lq6x62j" path="res://sprites/container_base.png" id="4_bahvt"]
+[ext_resource type="Texture2D" uid="uid://cpaew3refr6pc" path="res://sprites/white_circle.png" id="4_ijlrf"]
+[ext_resource type="Script" path="res://scripts/container_emitter.gd" id="5_itrls"]
+[ext_resource type="Texture2D" uid="uid://dqu1txe0kscrr" path="res://sprites/container_detail.png" id="5_xfyvi"]
+[ext_resource type="PackedScene" uid="uid://5qc5y71d6jp2" path="res://prefabs/buffer.tscn" id="6_i1y8l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbah5"]
+radius = 50.01
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grfj5"]
+radius = 50.01
+
+[node name="container" type="Node2D" node_paths=PackedStringArray("reciever", "emitter")]
+script = ExtResource("1_48orl")
+reciever = NodePath("receiver")
+emitter = NodePath("emitter")
+belt_prefab = ExtResource("2_vgio1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+z_index = -200
+position = Vector2(57, -32)
+scale = Vector2(1.14, 0.04)
+texture = ExtResource("3_a45kd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+z_index = -200
+position = Vector2(57, 32)
+scale = Vector2(1.14, 0.04)
+texture = ExtResource("3_a45kd")
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.392157, 0.388235, 0.396078, 1)
+position = Vector2(56, -59)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_bahvt")
+
+[node name="color" type="Sprite2D" parent="sprite"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+texture = ExtResource("5_xfyvi")
+
+[node name="receiver" type="StaticBody2D" parent="."]
+z_index = -10
+script = ExtResource("3_kor7q")
+
+[node name="sprite2" type="Sprite2D" parent="receiver"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_ijlrf")
+
+[node name="sprite2" type="Sprite2D" parent="receiver/sprite2"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_ijlrf")
+
+[node name="collider" type="CollisionShape2D" parent="receiver"]
+shape = SubResource("CircleShape2D_bbah5")
+
+[node name="emitter" type="StaticBody2D" parent="."]
+z_index = -10
+position = Vector2(113, 0)
+script = ExtResource("5_itrls")
+
+[node name="sprite2" type="Sprite2D" parent="emitter"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_ijlrf")
+
+[node name="sprite2" type="Sprite2D" parent="emitter/sprite2"]
+self_modulate = Color(0.721569, 0.709804, 0.72549, 1)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_ijlrf")
+
+[node name="buffer" parent="emitter" instance=ExtResource("6_i1y8l")]
+
+[node name="collider" type="CollisionShape2D" parent="emitter"]
+shape = SubResource("CircleShape2D_grfj5")

@@ -5,6 +5,13 @@ extends Node2D
 @onready var belts = get_node('/root/main/world/belts')
 	
 @export var max_time: float = 60.0
+var max_time_dict: Dictionary = {
+	0: 600.0,
+	1: 600.0,
+	2: 60.0,
+	3: 90.0,
+	4: 90.0
+}
 @export var time: float = 60.0
 @export var timer_running = true
 @export var ready_for_continue = false
@@ -36,17 +43,23 @@ func next_stage():
 	current_stage += 1;
 	print('current stage: ' + str(current_stage))
 
-	for vehicle in main.get_children_in_groups(belts, ['vehicle'], true):
+	for vehicle in main.get_children_in_groups(main, ['vehicle'], true):
 		vehicle.queue_free()
 	for point in main.get_children_in_groups(points, ['point'], true):
 		if point.inactive_from <= current_stage:
 			point.deactivate()
 		elif point.active_from <= current_stage:
 			point.activate()
+		for buffer_holder in main.get_children_in_groups(point, ['buffer_holder'], true):
+			buffer_holder.queue_free()
 	for belt in main.get_children_in_groups(belts, ['belt'], true):
-		belt.check_cull()
+		belt.queue_free()
 
 	continue_button.deactivate()
+
+	if max_time_dict.has(current_stage):
+		max_time = max_time_dict[current_stage]
+
 	time = max_time
 	timer_running = true
 	ready_for_continue = false
