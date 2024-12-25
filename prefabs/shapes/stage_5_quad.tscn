@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/shape_quad.gd" id="1_rq2xl"]
+[ext_resource type="Texture2D" path="res://sprites/white_circle.png" id="2_vd85f"]
+
+[node name="shape_quad" type="Node2D"]
+scale = Vector2(1.25, 1.25)
+script = ExtResource("1_rq2xl")
+move_size = 9.0
+mult_size = 1.0
+minus_size = 0.039
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(-15.75, -15.75)
+scale = Vector2(0.0429999, 0.0429999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_2668" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(-11.25, -15.75)
+scale = Vector2(0.0429999, 0.0429999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_2669" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(-11.25, -11.25)
+scale = Vector2(0.0429999, 0.0429999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_2670" type="Sprite2D" parent="."]
+self_modulate = Color(0.827451, 0.627451, 0.407843, 1)
+position = Vector2(-15.75, -11.25)
+scale = Vector2(0.0429999, 0.0429999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_5005" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(-4.5, -13.5)
+scale = Vector2(0.0819999, 0.0819999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_5006" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(-4.5, -4.5)
+scale = Vector2(0.0819999, 0.0819999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_5007" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(-13.5, -4.5)
+scale = Vector2(0.0819999, 0.0819999)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_6483" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(9, -9)
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_6484" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(9, 9)
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_vd85f")
+
+[node name="_Sprite2D_6485" type="Sprite2D" parent="."]
+self_modulate = Color(0.294118, 0.501961, 0.792157, 1)
+position = Vector2(-9, 9)
+scale = Vector2(0.121, 0.121)
+texture = ExtResource("2_vd85f")

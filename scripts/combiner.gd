@@ -3,6 +3,7 @@ extends Node2D
 @onready var main = get_node('/root/main')
 
 @export var active_from = 0
+@export var inactive_from = 9999
 
 @export var reciever_1: Node2D
 @export var reciever_2: Node2D
@@ -20,6 +21,7 @@ extends Node2D
 func _ready():
 	for point in main.get_children_in_groups(self, ['point']):
 		point.active_from = active_from
+		point.inactive_from = inactive_from
 	deactivate()
 
 func deactivate():

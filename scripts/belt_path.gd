@@ -1,6 +1,7 @@
 extends Path2D
 
 @onready var main = get_node('/root/main')
+@onready var game = get_node('/root/main/game')
 
 @export var collider_prefab: PackedScene
 @export var arrow_prefab: PackedScene
@@ -11,6 +12,9 @@ func _ready() -> void:
 	add_to_group('path')
 
 func _process(delta: float) -> void:
+	if game.timed_out:
+		return
+
 	var vehicles = main.get_children_in_groups(self, ['vehicle'])
 	vehicles.sort_custom(progress_desc)
 	var max_progress = 99999.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dmemqpdkflenm"]
+[gd_scene load_steps=28 format=3 uid="uid://dmemqpdkflenm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dbvsox2aucdnv" path="res://prefabs/consumer.tscn" id="4_eed4j"]
 [ext_resource type="Texture2D" uid="uid://c3hqivygpah5k" path="res://sprites/white_square.png" id="5_csge8"]
 [ext_resource type="PackedScene" uid="uid://d2yym3g76a5de" path="res://prefabs/shapes/circle.tscn" id="5_q5a4o"]
+[ext_resource type="Script" path="res://scripts/time_out.gd" id="8_ha705"]
 [ext_resource type="Texture2D" uid="uid://obvagqqy76w4" path="res://sprites/continue_background.png" id="8_mcm47"]
 [ext_resource type="Script" path="res://scripts/continue_button.gd" id="8_v3m11"]
 [ext_resource type="PackedScene" uid="uid://bbdsxsl50005r" path="res://prefabs/shapes/circle_blue.tscn" id="15_75q2q"]
@@ -21,6 +22,10 @@
 [ext_resource type="PackedScene" uid="uid://b68fyboj40g6t" path="res://prefabs/shapes/stage_3_quad_2.tscn" id="17_t4kjw"]
 [ext_resource type="PackedScene" uid="uid://cbreufax8ennl" path="res://prefabs/shapes/stage_4_quad.tscn" id="19_4dqjj"]
 [ext_resource type="PackedScene" uid="uid://cycj6r5p06ipx" path="res://prefabs/container.tscn" id="20_jeu5s"]
+[ext_resource type="PackedScene" path="res://prefabs/shapes/stage_5_quad.tscn" id="22_qgao1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5nj1"]
+size = Vector2(302, 80)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n0rk2"]
 viewport_path = NodePath("timer_container/timer_viewport")
@@ -31,9 +36,6 @@ shader = ExtResource("3_67hgn")
 shader_parameter/color = Color(0.635294, 0.862745, 0.780392, 1)
 shader_parameter/alpha_texture = SubResource("ViewportTexture_n0rk2")
 shader_parameter/color_texture = ExtResource("3_f7yio")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5nj1"]
-size = Vector2(302, 80)
 
 [sub_resource type="Environment" id="Environment_ef7gb"]
 
@@ -122,13 +124,72 @@ script = ExtResource("3_8jwt4")
 render_layers = 1
 
 [node name="ui" type="Node2D" parent="world/camera"]
+z_index = 200
 
-[node name="timer" type="Sprite2D" parent="world/camera/ui"]
-z_index = -200
-material = SubResource("ShaderMaterial_72c1n")
-texture = ExtResource("3_f7yio")
+[node name="time_out" type="StaticBody2D" parent="world/camera/ui"]
+visible = false
+script = ExtResource("8_ha705")
+
+[node name="blackout" type="Sprite2D" parent="world/camera/ui/time_out"]
+self_modulate = Color(0.129412, 0.129412, 0.137255, 0.498039)
+position = Vector2(-6.10352e-05, 0)
+scale = Vector2(13.08, 7.48)
+texture = ExtResource("5_csge8")
+
+[node name="Label2" type="Label" parent="world/camera/ui/time_out"]
+self_modulate = Color(0.705882, 0.321569, 0.321569, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -350.0
+offset_right = 128.0
+offset_bottom = -319.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "TIME OUT!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sprite2" type="Sprite2D" parent="world/camera/ui/time_out"]
+self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
+position = Vector2(0, -267)
+scale = Vector2(2.88, 0.759999)
+texture = ExtResource("5_csge8")
+
+[node name="sprite" type="Sprite2D" parent="world/camera/ui/time_out"]
+self_modulate = Color(0.705882, 0.321569, 0.321569, 1)
+position = Vector2(0, -267)
+texture = ExtResource("8_mcm47")
+
+[node name="collider" type="CollisionShape2D" parent="world/camera/ui/time_out"]
+position = Vector2(0, -267)
+shape = SubResource("RectangleShape2D_b5nj1")
+
+[node name="Label" type="Label" parent="world/camera/ui/time_out"]
+self_modulate = Color(0.705882, 0.321569, 0.321569, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -281.0
+offset_right = 128.0
+offset_bottom = -253.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "RETRY
+STAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="continue_button" type="StaticBody2D" parent="world/camera/ui"]
+visible = false
 position = Vector2(0, -267)
 script = ExtResource("8_v3m11")
 
@@ -138,6 +199,7 @@ scale = Vector2(2.88, 0.759999)
 texture = ExtResource("5_csge8")
 
 [node name="sprite" type="Sprite2D" parent="world/camera/ui/continue_button"]
+self_modulate = Color(0.635294, 0.862745, 0.780392, 1)
 texture = ExtResource("8_mcm47")
 
 [node name="Label" type="Label" parent="world/camera/ui/continue_button"]
@@ -161,6 +223,10 @@ vertical_alignment = 1
 [node name="collider" type="CollisionShape2D" parent="world/camera/ui/continue_button"]
 shape = SubResource("RectangleShape2D_b5nj1")
 
+[node name="timer" type="Sprite2D" parent="world/camera/ui"]
+material = SubResource("ShaderMaterial_72c1n")
+texture = ExtResource("3_f7yio")
+
 [node name="player" type="Node2D" parent="world"]
 script = ExtResource("1_5ycuw")
 belt_prefab = ExtResource("3_2i38k")
@@ -171,6 +237,7 @@ belt_prefab = ExtResource("3_2i38k")
 
 [node name="spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
 position = Vector2(385, 268)
+inactive_from = 5
 max_inventory_dict = {
 0: 5.0,
 4: 10.0
@@ -217,22 +284,49 @@ max_inventory_dict = {}
 [node name="stage_3_combiner" parent="world/points" instance=ExtResource("17_62dwh")]
 position = Vector2(640, 420)
 active_from = 3
+inactive_from = 5
 
 [node name="stage_4_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
 position = Vector2(1020, 443)
 consume_shape = ExtResource("19_4dqjj")
 active_from = 4
+inactive_from = 5
 max_inventory_dict = {}
 
 [node name="stage_4_container" parent="world/points" instance=ExtResource("20_jeu5s")]
 position = Vector2(583, 619)
 active_from = 4
 
+[node name="stage_5_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(1069, 226)
+consume_shape = ExtResource("22_qgao1")
+active_from = 5
+max_inventory_dict = {}
+
+[node name="stage_5_combiner_1" parent="world/points" instance=ExtResource("17_62dwh")]
+position = Vector2(440, 420)
+active_from = 3
+
+[node name="stage_5_combiner_2" parent="world/points" instance=ExtResource("17_62dwh")]
+position = Vector2(840, 420)
+active_from = 3
+
+[node name="stage_5_spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
+position = Vector2(232, 226)
+active_from = 5
+max_inventory_dict = {
+5: 15.0
+}
+spawns_per_sec_dict = {
+5: 3.0
+}
+
 [node name="environment" type="WorldEnvironment" parent="world"]
 environment = SubResource("Environment_ef7gb")
 
-[node name="game" type="Node2D" parent="." node_paths=PackedStringArray("timer", "continue_button")]
+[node name="game" type="Node2D" parent="." node_paths=PackedStringArray("timer", "continue_button", "time_out")]
 script = ExtResource("2_cocho")
-current_stage = 3
+current_stage = 4
 timer = NodePath("../timer_container/timer_viewport/timer")
 continue_button = NodePath("../world/camera/ui/continue_button")
+time_out = NodePath("../world/camera/ui/time_out")
