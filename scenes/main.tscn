@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dmemqpdkflenm"]
+[gd_scene load_steps=29 format=3 uid="uid://dmemqpdkflenm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5ycuw"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_qlr3v"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cbreufax8ennl" path="res://prefabs/shapes/stage_4_quad.tscn" id="19_4dqjj"]
 [ext_resource type="PackedScene" uid="uid://cycj6r5p06ipx" path="res://prefabs/container.tscn" id="20_jeu5s"]
 [ext_resource type="PackedScene" path="res://prefabs/shapes/stage_5_quad.tscn" id="22_qgao1"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="23_ugmfc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5nj1"]
 size = Vector2(302, 80)
@@ -296,24 +297,29 @@ max_inventory_dict = {}
 [node name="stage_4_container" parent="world/points" instance=ExtResource("20_jeu5s")]
 position = Vector2(583, 619)
 active_from = 4
+inactive_from = 6
 
 [node name="stage_5_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
 position = Vector2(1069, 226)
 consume_shape = ExtResource("22_qgao1")
 active_from = 5
+inactive_from = 6
 max_inventory_dict = {}
 
 [node name="stage_5_combiner_1" parent="world/points" instance=ExtResource("17_62dwh")]
 position = Vector2(440, 420)
-active_from = 3
+active_from = 5
+inactive_from = 6
 
 [node name="stage_5_combiner_2" parent="world/points" instance=ExtResource("17_62dwh")]
 position = Vector2(840, 420)
-active_from = 3
+active_from = 5
+inactive_from = 6
 
 [node name="stage_5_spawner" parent="world/points" instance=ExtResource("2_mfv1d")]
 position = Vector2(232, 226)
 active_from = 5
+inactive_from = 6
 max_inventory_dict = {
 5: 15.0
 }
@@ -321,12 +327,260 @@ spawns_per_sec_dict = {
 5: 3.0
 }
 
+[node name="stage_6_consumer" parent="world/points" instance=ExtResource("4_eed4j")]
+position = Vector2(1517, 610)
+consume_shape = ExtResource("22_qgao1")
+active_from = 6
+max_inventory_dict = {}
+
 [node name="environment" type="WorldEnvironment" parent="world"]
 environment = SubResource("Environment_ef7gb")
 
+[node name="tutorial" type="Node2D" parent="world"]
+z_index = 200
+script = ExtResource("23_ugmfc")
+
+[node name="0" type="Node2D" parent="world/tutorial"]
+visible = false
+
+[node name="Label" type="Label" parent="world/tutorial/0"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 605.0
+offset_right = 1278.0
+offset_bottom = 674.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Connect the emitter to the consumer
+by clicking and dragging with [Left mouse button]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="world/tutorial/0"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -378.0
+offset_top = 253.0
+offset_right = 901.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Emitter ->"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="world/tutorial/0"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 421.0
+offset_top = 432.0
+offset_right = 1700.0
+offset_bottom = 463.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "<- Consumer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1" type="Node2D" parent="world/tutorial"]
+visible = false
+
+[node name="Label" type="Label" parent="world/tutorial/1"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 605.0
+offset_right = 1278.0
+offset_bottom = 674.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Satify all consumers before the timer runs out"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2" type="Node2D" parent="world/tutorial"]
+visible = false
+
+[node name="Label" type="Label" parent="world/tutorial/2"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 605.0
+offset_right = 1278.0
+offset_bottom = 674.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Use the painter to change the color of shapes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="world/tutorial/2"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 179.0
+offset_top = 210.0
+offset_right = 1458.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "<- Painter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="Node2D" parent="world/tutorial"]
+visible = false
+
+[node name="Label" type="Label" parent="world/tutorial/3"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 605.0
+offset_right = 1278.0
+offset_bottom = 674.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Use the combiner to combine 4 shapes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="world/tutorial/3"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 154.0
+offset_top = 408.0
+offset_right = 1433.0
+offset_bottom = 439.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "<- Combiner"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="Node2D" parent="world/tutorial"]
+visible = false
+
+[node name="Label" type="Label" parent="world/tutorial/4"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 659.0
+offset_right = 1278.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Use the container to store shapes for later
+Remove connections with [Right mouse button] "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="world/tutorial/4"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 199.0
+offset_top = 603.0
+offset_right = 1478.0
+offset_bottom = 634.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "<- Container"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="Node2D" parent="world/tutorial"]
+visible = false
+
+[node name="Label" type="Label" parent="world/tutorial/5"]
+self_modulate = Color(0.372549, 0.333333, 0.415686, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = 659.0
+offset_right = 1278.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="Node2D" parent="world/tutorial"]
+
+[node name="Label" type="Label" parent="world/tutorial/6"]
+self_modulate = Color(0.541176, 0.690196, 0.376471, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 1278.0
+offset_bottom = 728.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "WELL DONE
+
+YOU WIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="game" type="Node2D" parent="." node_paths=PackedStringArray("timer", "continue_button", "time_out")]
 script = ExtResource("2_cocho")
-current_stage = 4
 timer = NodePath("../timer_container/timer_viewport/timer")
 continue_button = NodePath("../world/camera/ui/continue_button")
 time_out = NodePath("../world/camera/ui/time_out")

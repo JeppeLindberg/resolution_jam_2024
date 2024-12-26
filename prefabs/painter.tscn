@@ -50,6 +50,7 @@ texture = ExtResource("5_tycp8")
 z_index = -10
 script = ExtResource("1_xy1cj")
 active_from = 2
+inactive_from = 6
 
 [node name="sprite" type="Sprite2D" parent="receiver"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)
@@ -69,6 +70,7 @@ z_index = -10
 position = Vector2(113, 0)
 script = ExtResource("3_20ceq")
 active_from = 2
+inactive_from = 6
 
 [node name="sprite" type="Sprite2D" parent="emitter"]
 self_modulate = Color(0.270588, 0.266667, 0.309804, 1)

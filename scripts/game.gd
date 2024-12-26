@@ -6,12 +6,13 @@ extends Node2D
 
 @export var max_time: float = 60.0
 var max_time_dict: Dictionary = {
-	0: 600.0,
-	1: 600.0,
+	0: -1.0,
+	1: 120.0,
 	2: 60.0,
 	3: 90.0,
 	4: 90.0,
-	5: 120.0
+	5: 120.0,
+	6: -1.0
 }
 @export var time: float = 60.0
 @export var timer_running = true
@@ -30,8 +31,12 @@ func _ready() -> void:
 func _process(delta):
 	if timer_running:
 		time -= delta * main.delta_mult
-	timer.timer = time / max_time
-	timer.visible = time > 0.0
+		timer.timer = time / max_time
+		timer.visible = time > 0.0
+	if max_time == -1.0:
+		time = 1.0
+		timer.timer = 1.0
+		timer.visible = true
 
 	if timer_running == true:
 		_check_continue()
